@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1of8ysu" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_1fa8i2i">
+    <bpmn:participant id="Participant_1y8jc8o" name="Процесс обработки запросов с повышенным приоритетом" processRef="Process_1nt15x3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1nt15x3" isExecutable="true">
+    <bpmn:startEvent id="Event_0hmjqkg" camunda:initiator="Event_18a1rkq">
+      <bpmn:outgoing>Flow_0yabmr2</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1a96ale" messageRef="Message_1bm645h" />
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_12epl0y" name="Запрос добавлен в очередь на исполнение">
+      <bpmn:incoming>Flow_0yabmr2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0krjunn</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:intermediateCatchEvent id="Event_1yuoz6v">
+      <bpmn:incoming>Flow_0krjunn</bpmn:incoming>
+      <bpmn:outgoing>Flow_0odg12l</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0asn6i1" messageRef="Message_1x4fbdn" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sendTask id="Activity_0wowrmm" name="Запрос передан на контроль руководителю отдела" camunda:delegateExpression="#{logger}">
+      <bpmn:incoming>Flow_1bm9twa</bpmn:incoming>
+      <bpmn:outgoing>Flow_11o3c0x</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:serviceTask id="Activity_0vb59ib" name="Руководитель лично назначает исполнителя" camunda:delegateExpression="#{logger}">
+      <bpmn:incoming>Flow_11o3c0x</bpmn:incoming>
+      <bpmn:outgoing>Flow_1396zio</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:intermediateCatchEvent id="Event_0w349t5">
+      <bpmn:incoming>Flow_1396zio</bpmn:incoming>
+      <bpmn:incoming>Flow_0odg12l</bpmn:incoming>
+      <bpmn:outgoing>Flow_1v9fozi</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0ge39f8">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:endEvent id="Event_0w3lkia">
+      <bpmn:incoming>Flow_1v9fozi</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0qj58jd" camunda:delegateExpression="#{logger}" />
+    </bpmn:endEvent>
+    <bpmn:boundaryEvent id="Event_18ry35g" attachedToRef="Activity_12epl0y">
+      <bpmn:outgoing>Flow_1bm9twa</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0o2815u">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_1v9fozi" sourceRef="Event_0w349t5" targetRef="Event_0w3lkia" />
+    <bpmn:sequenceFlow id="Flow_1396zio" sourceRef="Activity_0vb59ib" targetRef="Event_0w349t5" />
+    <bpmn:sequenceFlow id="Flow_11o3c0x" sourceRef="Activity_0wowrmm" targetRef="Activity_0vb59ib" />
+    <bpmn:sequenceFlow id="Flow_1bm9twa" sourceRef="Event_18ry35g" targetRef="Activity_0wowrmm" />
+    <bpmn:sequenceFlow id="Flow_0odg12l" sourceRef="Event_1yuoz6v" targetRef="Event_0w349t5" />
+    <bpmn:sequenceFlow id="Flow_0krjunn" sourceRef="Activity_12epl0y" targetRef="Event_1yuoz6v" />
+    <bpmn:sequenceFlow id="Flow_0yabmr2" sourceRef="Event_0hmjqkg" targetRef="Activity_12epl0y" />
+    <bpmn:textAnnotation id="TextAnnotation_13ac62m">
+      <bpmn:text>Получен запрос с повышенным приоритетом</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_1yukz5s">
+      <bpmn:text>Запрос не обработан за 24 часа (2 минуты в рамках тестирования)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_03oy8qf">
+      <bpmn:text>Запросу присвоен исполнитель</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0wduxj6">
+      <bpmn:text>Идёт обработка запроса</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_00gci3v">
+      <bpmn:text>Запрос успешно обработан</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_12806hk" sourceRef="Event_0hmjqkg" targetRef="TextAnnotation_13ac62m" />
+    <bpmn:association id="Association_0yazqk4" sourceRef="Event_18ry35g" targetRef="TextAnnotation_1yukz5s" />
+    <bpmn:association id="Association_1d1ga1d" sourceRef="Event_1yuoz6v" targetRef="TextAnnotation_03oy8qf" />
+    <bpmn:association id="Association_0j25q3z" sourceRef="Event_0w349t5" targetRef="TextAnnotation_0wduxj6" />
+    <bpmn:association id="Association_1ryngwy" sourceRef="Event_0w3lkia" targetRef="TextAnnotation_00gci3v" />
+  </bpmn:process>
+  <bpmn:message id="Message_1x4fbdn" name="requestExecutorSet" />
+  <bpmn:message id="Message_1bm645h" name="requestPriorityIncreased" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1fa8i2i">
+      <bpmndi:BPMNShape id="Participant_1y8jc8o_di" bpmnElement="Participant_1y8jc8o" isHorizontal="true">
+        <dc:Bounds x="180" y="80" width="800" height="290" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_13ac62m_di" bpmnElement="TextAnnotation_13ac62m">
+        <dc:Bounds x="240" y="190" width="100" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1yukz5s_di" bpmnElement="TextAnnotation_1yukz5s">
+        <dc:Bounds x="350" y="220" width="100" height="96" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_03oy8qf_di" bpmnElement="TextAnnotation_03oy8qf">
+        <dc:Bounds x="480" y="180" width="100" height="53" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0wduxj6_di" bpmnElement="TextAnnotation_0wduxj6">
+        <dc:Bounds x="760" y="185" width="100" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_00gci3v_di" bpmnElement="TextAnnotation_00gci3v">
+        <dc:Bounds x="860" y="180" width="100" height="53" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1v9fozi_di" bpmnElement="Flow_1v9fozi">
+        <di:waypoint x="828" y="150" />
+        <di:waypoint x="892" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1396zio_di" bpmnElement="Flow_1396zio">
+        <di:waypoint x="710" y="310" />
+        <di:waypoint x="736" y="310" />
+        <di:waypoint x="736" y="150" />
+        <di:waypoint x="792" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11o3c0x_di" bpmnElement="Flow_11o3c0x">
+        <di:waypoint x="580" y="310" />
+        <di:waypoint x="610" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bm9twa_di" bpmnElement="Flow_1bm9twa">
+        <di:waypoint x="450" y="208" />
+        <di:waypoint x="450" y="310" />
+        <di:waypoint x="480" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0odg12l_di" bpmnElement="Flow_0odg12l">
+        <di:waypoint x="548" y="150" />
+        <di:waypoint x="792" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0krjunn_di" bpmnElement="Flow_0krjunn">
+        <di:waypoint x="450" y="150" />
+        <di:waypoint x="512" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yabmr2_di" bpmnElement="Flow_0yabmr2">
+        <di:waypoint x="308" y="150" />
+        <di:waypoint x="350" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0hmjqkg_di" bpmnElement="Event_0hmjqkg">
+        <dc:Bounds x="272" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12epl0y_di" bpmnElement="Activity_12epl0y">
+        <dc:Bounds x="350" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1yuoz6v_di" bpmnElement="Event_1yuoz6v">
+        <dc:Bounds x="512" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0wowrmm_di" bpmnElement="Activity_0wowrmm">
+        <dc:Bounds x="480" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vb59ib_di" bpmnElement="Activity_0vb59ib">
+        <dc:Bounds x="610" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0w349t5_di" bpmnElement="Event_0w349t5">
+        <dc:Bounds x="792" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0w3lkia_di" bpmnElement="Event_0w3lkia">
+        <dc:Bounds x="892" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_12806hk_di" bpmnElement="Association_12806hk">
+        <di:waypoint x="290" y="168" />
+        <di:waypoint x="290" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0yazqk4_di" bpmnElement="Association_0yazqk4">
+        <di:waypoint x="437" y="202" />
+        <di:waypoint x="417" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1d1ga1d_di" bpmnElement="Association_1d1ga1d">
+        <di:waypoint x="530" y="168" />
+        <di:waypoint x="530" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0j25q3z_di" bpmnElement="Association_0j25q3z">
+        <di:waypoint x="810" y="168" />
+        <di:waypoint x="810" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1ryngwy_di" bpmnElement="Association_1ryngwy">
+        <di:waypoint x="910" y="168" />
+        <di:waypoint x="910" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_18ry35g_di" bpmnElement="Event_18ry35g">
+        <dc:Bounds x="432" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
