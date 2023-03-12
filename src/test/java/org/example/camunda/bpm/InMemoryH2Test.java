@@ -12,7 +12,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
-import static org.junit.Assert.*;
 
 /**
  * Test case starting an in-memory database-backed Process Engine.
@@ -33,7 +32,7 @@ public class InMemoryH2Test {
   }
 
   @Test
-  @Deployment(resources = "process.bpmn")
+  @Deployment(resources = "diagram_2_complains.xml")
   public void testHappyPath() {
     // Drive the process by API and assert correct behavior by camunda-bpm-assert
 

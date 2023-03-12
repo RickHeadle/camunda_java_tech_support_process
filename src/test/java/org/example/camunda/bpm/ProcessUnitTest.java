@@ -15,12 +15,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
-import static org.junit.Assert.*;
-import static org.assertj.core.api.Assertions.*;
 
 
 /**
@@ -52,7 +49,7 @@ public class ProcessUnitTest {
   }
 
   @Test
-  @Deployment(resources = "process.bpmn") // only required for process test coverage
+  @Deployment(resources = "diagram_2_complains.xml") // only required for process test coverage
   public void testHappyPath() {
     // Drive the process by API and assert correct behavior by camunda-bpm-assert
 
