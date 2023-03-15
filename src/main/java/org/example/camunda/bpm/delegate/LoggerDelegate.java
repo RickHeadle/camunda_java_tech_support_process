@@ -1,4 +1,4 @@
-package org.example.camunda.bpm;
+package org.example.camunda.bpm.delegate;
 
 import java.util.logging.Logger;
 

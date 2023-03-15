@@ -6,6 +6,7 @@ import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
 import org.camunda.bpm.engine.test.mock.Mocks;
 import org.camunda.bpm.extension.process_test_coverage.junit.rules.TestCoverageProcessEngineRuleBuilder;
+import org.example.camunda.bpm.delegate.LoggerDelegate;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
