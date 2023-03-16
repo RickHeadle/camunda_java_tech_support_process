@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * Обработка события "Запросу присвоен исполнитель"
- * @version 5
  */
 @Slf4j
 @Component(ProcessConstants.EVENT_REQUEST_EXECUTOR_SET)
@@ -19,6 +18,6 @@ public class RequestExecutorSetMessageProcessorDelegate implements JavaDelegate 
     log.debug(RequestExecutorSetMessageProcessorDelegate.log.getName());
     execution.getProcessEngine().getRuntimeService()
         .createMessageCorrelation(ProcessConstants.EVENT_REQUEST_EXECUTOR_SET)
-        .correlateStartMessage();
+        .correlate();
   }
 }

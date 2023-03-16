@@ -8,11 +8,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Обработка события "Запрос успешно обработан"
- * @deprecated использовался в устаревшей версии схемы
- * @version 2
  */
 @Slf4j
-@Deprecated
 @Component(ProcessConstants.EVENT_REQUEST_SOLVED_KEY)
 public class RequestSolvedMessageProcessorDelegate implements JavaDelegate {
 
