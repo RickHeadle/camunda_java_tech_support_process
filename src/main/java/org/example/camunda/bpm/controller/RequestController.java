@@ -26,8 +26,8 @@ public class RequestController {
   @GetMapping("/request/{id}")
   public ResponseEntity<RequestModel> findById(@PathVariable Long id) {
     return Optional.of(id)
-        .flatMap(identifier -> requestService.findById(identifier))
-        .map(request -> modelAssembler.toModel(request))
+        .flatMap(requestService::findById)
+        .map(modelAssembler::toModel)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.noContent().build());
   }
