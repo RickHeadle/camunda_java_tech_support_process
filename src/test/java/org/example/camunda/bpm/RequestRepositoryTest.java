@@ -1,5 +1,6 @@
 package org.example.camunda.bpm;
 
+import org.example.camunda.bpm.entity.Request;
 import org.example.camunda.bpm.service.RequestServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,15 +8,23 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 
-@AutoConfigureTestDatabase
 @SpringBootTest
+@AutoConfigureTestDatabase
 public class RequestRepositoryTest {
 
   @SpyBean
   private RequestServiceImpl requestService;
 
   @Test
-  public void createRequestWillSucceed() {
-    Assertions.assertEquals(1L, requestService.addNewRequest("Test Request #0"));
+  public void createdRequestDoesNotChangeAfterSave() {
+    final String requestMessage = "Test Request #0";
+
+    Assertions.assertEquals(1L, requestService.addNewRequest(requestMessage));
+    Request request = requestService.findById(1L).orElse(new Request());
+
+    Assertions.assertEquals(requestMessage, request.getMessage());
+    Assertions.assertEquals(RequestPriority.NORMAL, request.getPriority());
+    Assertions.assertEquals(RequestStatus.NEW, request.getStatus());
+    Assertions.assertNull(request.getExecutor());
   }
 }
