@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class RequestReceivedMessageProcessorDelegate implements JavaDelegate {
+public class RequestReceived implements JavaDelegate {
 
   public static final String EVENT_REQUEST_RECEIVED_KEY = "requestReceived";
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
-    log.debug(RequestReceivedMessageProcessorDelegate.log.getName());
+    log.debug(RequestReceived.log.getName());
     execution.getProcessEngine().getRuntimeService()
         .createMessageCorrelation(EVENT_REQUEST_RECEIVED_KEY).correlate();
   }

@@ -7,22 +7,26 @@ import org.example.camunda.bpm.service.RequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Сохранение новых поступивших запросов в БД.
+ */
 @Slf4j
 @Component
-public class RequestEntityCreator implements JavaDelegate {
+public class EntityCreator implements JavaDelegate {
 
   private final RequestServiceImpl requestService;
 
   @Autowired
-  public RequestEntityCreator(RequestServiceImpl requestService) {
+  public EntityCreator(RequestServiceImpl requestService) {
     this.requestService = requestService;
   }
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     log.debug("Adding new request to the database...");
-    String requestText = execution.getVariable("requestText").toString();
+    String requestText = execution.getVariableLocal("requestText").toString();
     Long entityId = requestService.addNewRequest(requestText);
+    execution.setVariableLocal("requestEntityId", entityId);
     log.debug("New request added to the database. EntityId = " + entityId);
   }
 }

@@ -9,6 +9,7 @@ public interface RequestService {
 
   Optional<Request> findById(@NonNull Long id);
 
+
   Long addNewRequest(@Nullable String requestText);
 
 }

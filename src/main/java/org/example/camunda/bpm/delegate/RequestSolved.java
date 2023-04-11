@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class RequestSolvedMessageProcessorDelegate implements JavaDelegate {
+public class RequestSolved implements JavaDelegate {
 
   public static final String EVENT_REQUEST_SOLVED_KEY = "requestSolvedByWatchGroup";
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
-    log.debug(RequestSolvedMessageProcessorDelegate.log.getName());
+    log.debug(RequestSolved.log.getName());
     execution.getProcessEngine().getRuntimeService()
         .createMessageCorrelation(EVENT_REQUEST_SOLVED_KEY).correlateStartMessage();
   }

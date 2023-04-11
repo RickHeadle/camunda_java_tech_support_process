@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class RequestExecutorSetMessageProcessorDelegate implements JavaDelegate {
+public class RequestExecutorSet implements JavaDelegate {
 
   public static final String EVENT_REQUEST_EXECUTOR_SET = "requestExecutorSet";
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
-    log.debug(RequestExecutorSetMessageProcessorDelegate.log.getName());
+    log.debug(RequestExecutorSet.log.getName());
     execution.getProcessEngine().getRuntimeService()
         .createMessageCorrelation(EVENT_REQUEST_EXECUTOR_SET).correlate();
   }
