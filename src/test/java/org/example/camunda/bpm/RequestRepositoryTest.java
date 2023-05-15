@@ -16,6 +16,8 @@ public class RequestRepositoryTest {
   private RequestServiceImpl requestService;
 
   @Test
+/*  @Sql(value = "classpath:scripts/h2/schema-h2.sql",
+      executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)*/
   public void createdRequestDoesNotChangeAfterSave() {
     final String requestMessage = "Test Request #0";
 

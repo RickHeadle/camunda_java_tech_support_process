@@ -1,0 +1,53 @@
+{
+  "components": [
+    {
+      "text": "# Обработка инцидента",
+      "type": "text",
+      "layout": {
+        "row": "Row_0b2nphj",
+        "columns": null
+      },
+      "id": "Field_02zo3vq"
+    },
+    {
+      "label": "Описание решения",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1j7maqq",
+        "columns": null
+      },
+      "id": "Field_0ssb8dy",
+      "key": "field_1689q4s"
+    },
+    {
+      "label": "Инцидент решен?",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_1qtkwl5",
+        "columns": null
+      },
+      "id": "Field_1trzrue",
+      "key": "field_1nf21ac"
+    },
+    {
+      "action": "submit",
+      "label": "Подтвердить",
+      "type": "button",
+      "layout": {
+        "row": "Row_1bg6wdn",
+        "columns": null
+      },
+      "id": "Field_1d2ajzp",
+      "key": "field_1lyasu3"
+    }
+  ],
+  "type": "default",
+  "id": "IncidentSolver",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

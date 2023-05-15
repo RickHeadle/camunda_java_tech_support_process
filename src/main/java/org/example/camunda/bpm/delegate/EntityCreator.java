@@ -24,7 +24,7 @@ public class EntityCreator implements JavaDelegate {
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     log.debug("Adding new request to the database...");
-    String requestText = execution.getVariableLocal("requestText").toString();
+    String requestText = execution.getVariableLocal("requestMessage").toString();
     Long entityId = requestService.addNewRequest(requestText);
     execution.setVariableLocal("requestEntityId", entityId);
     log.debug("New request added to the database. EntityId = " + entityId);

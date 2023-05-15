@@ -30,6 +30,7 @@ public class ExecutorSetter implements JavaDelegate {
     Long entityId = (Long) execution.getVariableLocal("requestEntityId");
     Request request = getEntityFromDB(entityId);
     User executor = userService.getExecutorWithLeastRequests();
+    executor.setAvailable(false);
     request.setExecutor(executor);
     execution.setVariableLocal("executor", executor);
     log.debug(String.format("Request (ID = %d) got an executor (ID = %d)!",

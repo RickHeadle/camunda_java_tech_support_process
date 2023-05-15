@@ -30,4 +30,16 @@ public class RequestServiceImpl implements RequestService {
         new Request(requestText, RequestPriority.NORMAL, RequestStatus.NEW));
     return savedRequest.getId();
   }
+
+  @Override
+  public void setStatus(@NonNull Long requestEntityId, @NonNull RequestStatus status) {
+    Optional<Request> request = findById(requestEntityId);
+    if (!request.isPresent()) {
+      throw new IllegalArgumentException(
+          String.format("Запрос с entityId = %d отсутствует в БД!", requestEntityId));
+    }
+    Request modifiedRequest = request.get();
+    modifiedRequest.setStatus(status);
+    requestRepository.save(modifiedRequest);
+  }
 }

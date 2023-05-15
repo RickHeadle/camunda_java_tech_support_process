@@ -1,0 +1,53 @@
+{
+  "components": [
+    {
+      "text": "# Обработка ЗНИ",
+      "type": "text",
+      "layout": {
+        "row": "Row_0f5wopv",
+        "columns": null
+      },
+      "id": "Field_09qheiu"
+    },
+    {
+      "label": "Описание решения",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0zust0c",
+        "columns": null
+      },
+      "id": "Field_1woramt",
+      "key": "field_1cc2j6g"
+    },
+    {
+      "label": "ЗНИ решен?",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_0tb209t",
+        "columns": null
+      },
+      "id": "Field_1x9r3u6",
+      "key": "field_18yua3u"
+    },
+    {
+      "action": "submit",
+      "label": "Подтвердить",
+      "type": "button",
+      "layout": {
+        "row": "Row_0dtn92z",
+        "columns": null
+      },
+      "id": "Field_181najr",
+      "key": "field_0htmq37"
+    }
+  ],
+  "type": "default",
+  "id": "RequestForChangeSolver",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

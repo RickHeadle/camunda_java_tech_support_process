@@ -1,0 +1,67 @@
+{
+  "components": [
+    {
+      "text": "# Определение типа запроса (2-ая линия)",
+      "type": "text",
+      "layout": {
+        "row": "Row_1w2qyju",
+        "columns": null
+      },
+      "id": "Field_1afs01b"
+    },
+    {
+      "values": [
+        {
+          "label": "Авария",
+          "value": "\"Авария\""
+        },
+        {
+          "label": "Инцидент",
+          "value": "\"Инцидент\""
+        },
+        {
+          "label": "Запрос в отдел обслуживания",
+          "value": "\"Запрос в отдел обслуживания\""
+        },
+        {
+          "label": "ЗНИ",
+          "value": "\"ЗНИ\""
+        },
+        {
+          "label": "Другое",
+          "value": "\"Другое\""
+        }
+      ],
+      "label": "К какому виду относится запрос?",
+      "type": "select",
+      "layout": {
+        "row": "Row_0wnkuu3",
+        "columns": null
+      },
+      "id": "Field_1ghl9qk",
+      "key": "field_104pxmi",
+      "defaultValue": "\"ЗНИ\"",
+      "searchable": true
+    },
+    {
+      "action": "submit",
+      "label": "Подтвердить",
+      "type": "button",
+      "layout": {
+        "row": "Row_0t5rbgp",
+        "columns": null
+      },
+      "id": "Field_0gjfnwy",
+      "key": "field_04g48w6"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1ttcrm9",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,4 +53,9 @@ public class User {
   @ManyToOne(optional = false)
   @JoinColumn(name = "ROLE_ID", nullable = false)
   private Role role;
+
+  //TODO: перенести в БД
+  @Setter
+  @Transient
+  private boolean isAvailable = true;
 }

@@ -1,0 +1,53 @@
+{
+  "components": [
+    {
+      "text": "# Обработка аварии",
+      "type": "text",
+      "layout": {
+        "row": "Row_11d9mph",
+        "columns": null
+      },
+      "id": "Field_0swansf"
+    },
+    {
+      "label": "Описание решения",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_1isstwr",
+        "columns": null
+      },
+      "id": "Field_02bmao2",
+      "key": "field_0ci56h1"
+    },
+    {
+      "label": "Авария устранена?",
+      "type": "checkbox",
+      "layout": {
+        "row": "Row_10nr12k",
+        "columns": null
+      },
+      "id": "Field_0d3oik4",
+      "key": "field_1kff0v0"
+    },
+    {
+      "action": "submit",
+      "label": "Подтвердить",
+      "type": "button",
+      "layout": {
+        "row": "Row_0y87kws",
+        "columns": null
+      },
+      "id": "Field_1lpq9yc",
+      "key": "field_052tfs1"
+    }
+  ],
+  "type": "default",
+  "id": "CrashSolver",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.11.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
