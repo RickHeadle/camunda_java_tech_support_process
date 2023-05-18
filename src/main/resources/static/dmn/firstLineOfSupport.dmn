@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1r1e5ii" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="Decision_1dk2adb" name="firstLineOfSupportAnalysis">
+    <decisionTable id="DecisionTable_0epgfhs">
+      <input id="Input_1" label="requestMessage">
+        <inputExpression id="InputExpression_1" typeRef="string" expressionLanguage="feel">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="isRequestForFirstLineOfSupport" name="isRequestForFirstLineOfSupport" typeRef="boolean" />
+      <rule id="DecisionRule_1xxfz1b">
+        <inputEntry id="UnaryTests_0dvm6o7">
+          <text>"Сбросить пароль"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0oqjbww">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1oh7eau">
+        <inputEntry id="UnaryTests_1smvz3z">
+          <text>"Разблокировать учётную запись"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rltbxr">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1jd3d69">
+        <inputEntry id="UnaryTests_01zw3og">
+          <text>"Консультация по интерфейсу приложения"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09mciom">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0chsg3u">
+        <description>Bad Request</description>
+        <inputEntry id="UnaryTests_1ygnns0">
+          <text>"Ошибка 400"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1a0s810">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_023fed3">
+        <description>Forbidden</description>
+        <inputEntry id="UnaryTests_14ztxeh">
+          <text>"Ошибка 403"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0p92r5v">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08sy0sv">
+        <description>Not Found</description>
+        <inputEntry id="UnaryTests_0qjz1zc">
+          <text>"Ошибка 404"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0j0yhzx">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0u9wl8v">
+        <description>I'm a teapot</description>
+        <inputEntry id="UnaryTests_1orq3on">
+          <text>"Ошибка 418"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_13erzke">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1joti4n">
+        <description>Internal Server Error</description>
+        <inputEntry id="UnaryTests_1odyz44">
+          <text>"Ошибка 500"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1tohnsz">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0yejdgh">
+        <inputEntry id="UnaryTests_0eitauz">
+          <text>not()</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ymcb9g">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1dk2adb">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

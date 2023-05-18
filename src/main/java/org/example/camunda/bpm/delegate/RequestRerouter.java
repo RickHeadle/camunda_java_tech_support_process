@@ -10,16 +10,16 @@ import org.slf4j.LoggerFactory;
  * Обработка события "Получен запрос с повышенным приоритетом"
  */
 
-public class RequestPriorityIncreased implements JavaDelegate {
+public class RequestRerouter implements JavaDelegate {
 
   private static final Logger log = LoggerFactory.getLogger(
-      RequestPriorityIncreased.class);
+      RequestRerouter.class);
   private FixedValue messageCorrelation;
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     String businessKey = execution.getBusinessKey();
-    log.debug(RequestPriorityIncreased.log.getName());
+    log.debug(RequestRerouter.log.getName());
     execution.getProcessEngine().getRuntimeService()
         .createMessageCorrelation(messageCorrelation.getExpressionText())
         .processInstanceBusinessKey(businessKey)

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class RequestPriorityIncreasedExecutionListener implements ExecutionListener {
+public class RequestReroutedExecutionListener implements ExecutionListener {
 
   @Override
   public void notify(DelegateExecution execution) throws Exception {
