@@ -77,14 +77,6 @@
           <text>false</text>
         </outputEntry>
       </rule>
-      <rule id="DecisionRule_0yejdgh">
-        <inputEntry id="UnaryTests_0eitauz">
-          <text>not()</text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1ymcb9g">
-          <text></text>
-        </outputEntry>
-      </rule>
     </decisionTable>
   </decision>
   <dmndi:DMNDI>
