@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1r1e5ii" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
-  <decision id="Decision_1dk2adb" name="firstLineOfSupportAnalysis">
-    <decisionTable id="DecisionTable_0epgfhs">
-      <input id="Input_1" label="requestMessage">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1r1e5ii" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="firstLineOfSupportAnalysis" name="firstLineOfSupportAnalysis">
+    <informationRequirement id="InformationRequirement_1k0y523">
+      <requiredInput href="#InputData_0qpjvc9" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0epgfhs" hitPolicy="FIRST">
+      <input id="Input_1" label="requestMessage" camunda:inputVariable="requestMessage">
         <inputExpression id="InputExpression_1" typeRef="string" expressionLanguage="feel">
           <text></text>
         </inputExpression>
@@ -77,13 +80,31 @@
           <text>false</text>
         </outputEntry>
       </rule>
+      <rule id="DecisionRule_1wv976x">
+        <description>Default</description>
+        <inputEntry id="UnaryTests_0j03v64">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14tugpq">
+          <text>false</text>
+        </outputEntry>
+      </rule>
     </decisionTable>
   </decision>
+  <inputData id="InputData_0qpjvc9" name="requestMessage" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="Decision_1dk2adb">
-        <dc:Bounds height="80" width="180" x="160" y="100" />
+      <dmndi:DMNShape dmnElementRef="firstLineOfSupportAnalysis">
+        <dc:Bounds height="80" width="180" x="370" y="80" />
       </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1j9tqvn" dmnElementRef="InputData_0qpjvc9">
+        <dc:Bounds height="45" width="125" x="158" y="98" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0oso831" dmnElementRef="InformationRequirement_1k0y523">
+        <di:waypoint x="283" y="121" />
+        <di:waypoint x="350" y="120" />
+        <di:waypoint x="370" y="120" />
+      </dmndi:DMNEdge>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>

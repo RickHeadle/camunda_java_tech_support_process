@@ -14,12 +14,15 @@
     <bpmn:endEvent id="Event_04tnrnr" name="Отправить обращение" camunda:asyncBefore="true" camunda:asyncAfter="true">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${requestSentExecutionListener}" event="start" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="requestMessage">${requestMessage}</camunda:inputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1tjlt1i</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1ry9y8e" messageRef="Message_2q757ba" camunda:delegateExpression="${requestGenerator}">
         <bpmn:extensionElements>
           <camunda:field name="messageCorrelation">
-            <camunda:string>requestMessage</camunda:string>
+            <camunda:string>requestMessageMail</camunda:string>
           </camunda:field>
         </bpmn:extensionElements>
       </bpmn:messageEventDefinition>
@@ -47,9 +50,11 @@
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="requestMessage">${requestMessage}</camunda:inputParameter>
+          <camunda:outputParameter name="requestEntityId">${requestEntityId}</camunda:outputParameter>
+          <camunda:outputParameter name="requestMessage">${requestMessage}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_010yzgo</bpmn:incoming>
+      <bpmn:incoming>Flow_1mqflyr</bpmn:incoming>
       <bpmn:outgoing>Flow_13tfmx3</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_172ni97">
         <bpmn:targetRef>DataStoreReference_194d8wz</bpmn:targetRef>
@@ -67,7 +72,7 @@
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${requestReroutedExecutionListener}" event="start" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1fhlrnx</bpmn:incoming>
+      <bpmn:incoming>Flow_1l6a22p</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0ay0blr" messageRef="Message_01r3tb1" camunda:delegateExpression="${requestRerouter}">
         <bpmn:extensionElements>
           <camunda:field name="messageCorrelation">
@@ -83,17 +88,13 @@
       <bpmn:incoming>Flow_00afe5l</bpmn:incoming>
       <bpmn:outgoing>Flow_0os1qkg</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:serviceTask id="Activity_0ndzfv3" name="Установить ответственную группу &#34;Вторая линия тех. поддержки&#34;" camunda:delegateExpression="${setNewExecutor}">
+    <bpmn:businessRuleTask id="Activity_15fxhqw" name="Определение отношения запроса к первой линии" camunda:asyncBefore="true" camunda:resultVariable="isRequestForFirstLineOfSupport" camunda:decisionRef="firstLineOfSupportAnalysis" camunda:mapDecisionResult="singleEntry">
       <bpmn:extensionElements>
-        <camunda:field name="executorName">
-          <camunda:string>secondLine</camunda:string>
-        </camunda:field>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="requestMessage">${requestMessage}</camunda:inputParameter>
+          <camunda:outputParameter name="isRequestForFirstLineOfSupport">${isRequestForFirstLineOfSupport}</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1l6a22p</bpmn:incoming>
-      <bpmn:outgoing>Flow_1fhlrnx</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:businessRuleTask id="Activity_15fxhqw" name="Определение отношения запроса к первой линии" camunda:resultVariable="isRequestForFirstLineOfSupport" camunda:decisionRef="firstLineOfSupportAnalysis" camunda:mapDecisionResult="singleEntry">
-      <bpmn:extensionElements />
       <bpmn:incoming>Flow_13tfmx3</bpmn:incoming>
       <bpmn:outgoing>Flow_1nuyho6</bpmn:outgoing>
     </bpmn:businessRuleTask>
@@ -103,34 +104,11 @@
     <bpmn:sequenceFlow id="Flow_00afe5l" name="Да" sourceRef="Gateway_1nb3jvd" targetRef="Activity_1b62vb2">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isRequestForFirstLineOfSupport}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1l6a22p" name="Нет" sourceRef="Gateway_1nb3jvd" targetRef="Activity_0ndzfv3">
+    <bpmn:sequenceFlow id="Flow_1l6a22p" name="Нет" sourceRef="Gateway_1nb3jvd" targetRef="Event_0uzso2f">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!isRequestForFirstLineOfSupport}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0os1qkg" sourceRef="Activity_1b62vb2" targetRef="Event_0m58afa" />
-    <bpmn:sequenceFlow id="Flow_1fhlrnx" sourceRef="Activity_0ndzfv3" targetRef="Event_0uzso2f" />
-    <bpmn:sequenceFlow id="Flow_1mqflyr" sourceRef="Event_03pxnvd" targetRef="Activity_0wmjga3" />
-    <bpmn:sequenceFlow id="Flow_010yzgo" sourceRef="Activity_0wmjga3" targetRef="Activity_00zq328" />
-    <bpmn:serviceTask id="Activity_0wmjga3" name="Загрузка текста обращения" camunda:asyncBefore="true" camunda:delegateExpression="${requestMessageLoader}">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="requestMessage">${requestMessage}</camunda:outputParameter>
-        </camunda:inputOutput>
-        <camunda:executionListener expression="${execution.setVariable(&#39;requestMessage&#39;, &#39;&#39;)}" event="start" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1mqflyr</bpmn:incoming>
-      <bpmn:outgoing>Flow_010yzgo</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:boundaryEvent id="Event_0745gkb" attachedToRef="Activity_0wmjga3">
-      <bpmn:outgoing>Flow_0wqo8hj</bpmn:outgoing>
-      <bpmn:errorEventDefinition id="ErrorEventDefinition_0039eic" errorRef="Error_0ut8a9w" camunda:errorCodeVariable="errorCode" camunda:errorMessageVariable="message" />
-    </bpmn:boundaryEvent>
-    <bpmn:sequenceFlow id="Flow_0wqo8hj" sourceRef="Event_0745gkb" targetRef="Event_07hy2lo" />
-    <bpmn:endEvent id="Event_07hy2lo" name="Возникла ошибка">
-      <bpmn:extensionElements>
-        <camunda:executionListener delegateExpression="${errorListener}" event="start" />
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0wqo8hj</bpmn:incoming>
-    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1mqflyr" sourceRef="Event_03pxnvd" targetRef="Activity_00zq328" />
   </bpmn:process>
   <bpmn:process id="secondLine" isExecutable="true">
     <bpmn:startEvent id="Event_0x925bk" camunda:asyncAfter="true">
@@ -255,7 +233,7 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_1r34n85" sourceRef="Event_0x925bk" targetRef="Activity_0cjwsel" />
     <bpmn:sequenceFlow id="Flow_0ry82aa" sourceRef="Activity_0cjwsel" targetRef="Gateway_0yzggc4" />
-    <bpmn:userTask id="Activity_0cjwsel" name="Определение вида поступившего запроса" camunda:formRef="${requestTypeCheck}" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_0cjwsel" name="Определение вида поступившего запроса" camunda:asyncBefore="true" camunda:formRef="requestTypeCheck" camunda:formRefBinding="latest">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:outputParameter name="requestType">${requestType}</camunda:outputParameter>
@@ -270,7 +248,7 @@
       <bpmn:incoming>Flow_0gz9khw</bpmn:incoming>
     </bpmn:endEvent>
   </bpmn:process>
-  <bpmn:message id="Message_2q757ba" name="requestMessage" />
+  <bpmn:message id="Message_2q757ba" name="requestMessageMail" />
   <bpmn:message id="Message_01r3tb1" name="requestForSecondLine" />
   <bpmn:error id="Error_0ut8a9w" name="MessageLoaderError" errorCode="MESSAGE_LOADER_ERROR" camunda:errorMessage="Error while load message from request" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -333,26 +311,11 @@
       <bpmndi:BPMNShape id="Activity_0b9digq_di" bpmnElement="Activity_1b62vb2">
         <dc:Bounds x="830" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0qpw9jt_di" bpmnElement="Activity_0ndzfv3">
-        <dc:Bounds x="830" y="680" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_09ae2ys_di" bpmnElement="Activity_15fxhqw">
         <dc:Bounds x="590" y="550" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataStoreReference_194d8wz_di" bpmnElement="DataStoreReference_194d8wz">
         <dc:Bounds x="485" y="475" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1mnw8wn_di" bpmnElement="Activity_0wmjga3">
-        <dc:Bounds x="320" y="550" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0mfsuqn_di" bpmnElement="Event_07hy2lo">
-        <dc:Bounds x="402" y="692" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="376" y="735" width="90" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0oslj7y_di" bpmnElement="Event_0745gkb">
-        <dc:Bounds x="402" y="612" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_13tfmx3_di" bpmnElement="Flow_13tfmx3">
         <di:waypoint x="560" y="590" />
@@ -372,30 +335,18 @@
       <bpmndi:BPMNEdge id="Flow_1l6a22p_di" bpmnElement="Flow_1l6a22p">
         <di:waypoint x="750" y="615" />
         <di:waypoint x="750" y="720" />
-        <di:waypoint x="830" y="720" />
+        <di:waypoint x="1002" y="720" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="755" y="666" width="20" height="14" />
+          <dc:Bounds x="760" y="643" width="20" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0os1qkg_di" bpmnElement="Flow_0os1qkg">
         <di:waypoint x="930" y="590" />
         <di:waypoint x="1002" y="590" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1fhlrnx_di" bpmnElement="Flow_1fhlrnx">
-        <di:waypoint x="930" y="720" />
-        <di:waypoint x="1002" y="720" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1mqflyr_di" bpmnElement="Flow_1mqflyr">
         <di:waypoint x="268" y="590" />
-        <di:waypoint x="320" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_010yzgo_di" bpmnElement="Flow_010yzgo">
-        <di:waypoint x="420" y="590" />
         <di:waypoint x="460" y="590" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0wqo8hj_di" bpmnElement="Flow_0wqo8hj">
-        <di:waypoint x="420" y="648" />
-        <di:waypoint x="420" y="692" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0aczrxu_di" bpmnElement="Participant_0aczrxu" isHorizontal="true">
         <dc:Bounds x="160" y="880" width="1610" height="720" />
@@ -583,6 +534,10 @@
         <di:waypoint x="410" y="990" />
         <di:waypoint x="451" y="990" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_172ni97_di" bpmnElement="DataOutputAssociation_172ni97">
+        <di:waypoint x="510" y="550" />
+        <di:waypoint x="510" y="525" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_09o24o5_di" bpmnElement="Flow_09o24o5">
         <di:waypoint x="530" y="258" />
         <di:waypoint x="530" y="415" />
@@ -594,10 +549,6 @@
         <di:waypoint x="1020" y="850" />
         <di:waypoint x="240" y="850" />
         <di:waypoint x="240" y="972" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_172ni97_di" bpmnElement="DataOutputAssociation_172ni97">
-        <di:waypoint x="510" y="550" />
-        <di:waypoint x="510" y="525" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

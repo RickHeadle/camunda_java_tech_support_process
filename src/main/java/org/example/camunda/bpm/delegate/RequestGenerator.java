@@ -15,9 +15,11 @@ public class RequestGenerator implements JavaDelegate {
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     String businessKey = execution.getBusinessKey();
+    String requestMessage = execution.getVariable("requestMessage").toString();
     execution.getProcessEngine().getRuntimeService()
         .createMessageCorrelation(messageCorrelation.getExpressionText())
         .processInstanceBusinessKey(businessKey)
+        .setVariable("requestMessage", requestMessage)
         .correlate();
   }
 }

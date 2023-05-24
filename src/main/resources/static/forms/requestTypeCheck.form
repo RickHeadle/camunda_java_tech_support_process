@@ -39,7 +39,7 @@
         "columns": null
       },
       "id": "Field_1ghl9qk",
-      "key": "field_104pxmi",
+      "key": "requestType",
       "defaultValue": "\"ЗНИ\"",
       "searchable": true
     },
@@ -56,7 +56,7 @@
     }
   ],
   "type": "default",
-  "id": "Form_1ttcrm9",
+  "id": "requestTypeCheck",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.11.0"

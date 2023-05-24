@@ -18,5 +18,11 @@ camunda.bpm:
     lastName: Demo
   filter:
     create: All Tasks
+  deployment-resource-pattern:
+    - classpath*:**/*.bpmn
+    - classpath*:**/*.bpmn20.xml
+    - classpath*:**/*.dmn
+    - classpath*:**/*.dmn11.xml
+    - classpath*:**/*.form
 #  default-serialization-format: application/json
 server.port: 8080
