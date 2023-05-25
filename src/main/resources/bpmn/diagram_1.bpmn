@@ -187,9 +187,7 @@
         <camunda:inputOutput>
           <camunda:outputParameter name="status">${status}</camunda:outputParameter>
         </camunda:inputOutput>
-        <camunda:properties>
-          <camunda:property name="status" />
-        </camunda:properties>
+        <camunda:executionListener class="${execution.setVariable(&#39;status&#39;, &#39;&#39;)}" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0lbprh0</bpmn:incoming>
       <bpmn:outgoing>Flow_0gz9khw</bpmn:outgoing>
@@ -199,9 +197,7 @@
         <camunda:inputOutput>
           <camunda:outputParameter name="status">${status}</camunda:outputParameter>
         </camunda:inputOutput>
-        <camunda:properties>
-          <camunda:property name="status" />
-        </camunda:properties>
+        <camunda:executionListener expression="${execution.setVariable(&#39;status&#39;, &#39;&#39;)}" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0cm2l3r</bpmn:incoming>
       <bpmn:outgoing>Flow_1lutt4s</bpmn:outgoing>
@@ -211,9 +207,7 @@
         <camunda:inputOutput>
           <camunda:outputParameter name="status">${status}</camunda:outputParameter>
         </camunda:inputOutput>
-        <camunda:properties>
-          <camunda:property name="status" />
-        </camunda:properties>
+        <camunda:executionListener expression="${execution.setVariable(&#39;status&#39;, &#39;&#39;)}" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ok0tji</bpmn:incoming>
       <bpmn:outgoing>Flow_0jlna9h</bpmn:outgoing>
