@@ -80,6 +80,15 @@
           <text>false</text>
         </outputEntry>
       </rule>
+      <rule id="DecisionRule_0eoaic3">
+        <description>Service Unavailable</description>
+        <inputEntry id="UnaryTests_16ctmf2">
+          <text>"Ошибка 503"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1m4x3i5">
+          <text>false</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_1wv976x">
         <description>Default</description>
         <inputEntry id="UnaryTests_0j03v64">

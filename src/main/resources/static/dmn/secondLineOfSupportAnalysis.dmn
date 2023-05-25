@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="secondLineOfSupportDefinition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="secondLineOfSupportAnalysis" name="secondLineOfSupportAnalysis">
+    <informationRequirement id="InformationRequirement_0ov36p0">
+      <requiredInput href="#InputData_0q9tvr0" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0g0udbu" hitPolicy="FIRST">
+      <input id="InputClause_02p2xih" label="requestMessage" camunda:inputVariable="requestMessage">
+        <inputExpression id="LiteralExpression_0kcj43v" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="requestType" name="requestType" typeRef="string" />
+      <output id="OutputClause_0b4z7m9" label="isRequestForSecondLineOfSupport" name="isRequestForSecondLineOfSupport" typeRef="boolean" />
+      <rule id="DecisionRule_0y1w9md">
+        <inputEntry id="UnaryTests_1f2ik52">
+          <text>"Ошибка 418"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_19t39eu">
+          <text>"Инцидент"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_140ybto">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16xnpt0">
+        <inputEntry id="UnaryTests_0i78ov2">
+          <text>"Ошибка 500"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0byy7iu">
+          <text>"Инцидент"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_08wbnsc">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02rfn78">
+        <inputEntry id="UnaryTests_0cwb6tx">
+          <text>"Ошибка 503"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hddpcm">
+          <text>"Авария"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1kcgw28">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xxkgxr">
+        <inputEntry id="UnaryTests_1us1gzj">
+          <text>"Упал сервер"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lb7eov">
+          <text>"Авария"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1rpiy9e">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0diq192">
+        <inputEntry id="UnaryTests_0d4l0ix">
+          <text>"Изменение интерфейса"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15uc2j4">
+          <text>"ЗНИ"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0svpxef">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ftfvih">
+        <inputEntry id="UnaryTests_1cxa4aa">
+          <text>"Добавление нового функционала"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_17ur2l7">
+          <text>"ЗНИ"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1anz54a">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cachfk">
+        <inputEntry id="UnaryTests_0jtzjfo">
+          <text>"Предоставление доступа"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1gva9sc">
+          <text>"Запрос в службу безопасности"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0azjgob">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ulqhpu">
+        <inputEntry id="UnaryTests_1ig7air">
+          <text>"Утечка данных"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vngtq3">
+          <text>"Запрос в службу безопасности"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1gh8g2s">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_144glrq">
+        <description>Отклонено, основание: "Принтеры не входят в зону ответственности технической поддержки. Оставьте запрос в ЕСПП."</description>
+        <inputEntry id="UnaryTests_1gx99hh">
+          <text>"Сломался принтер"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1e4dmn0">
+          <text>"Другое"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0iby8kw">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1j9f4zu">
+        <description>Отклонено, основание: "Excel не входит в зону ответственности технической поддержки. Обратитесь к официальную поддержку Microsoft."</description>
+        <inputEntry id="UnaryTests_1tpwi7j">
+          <text>"Пропала колонка в Excel"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jc0fnj">
+          <text>"Другое"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1b4gv4t">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0m4nmyu">
+        <description>Отклонено, основание: "Недостаточно информации по теме запроса. Создайте новый запрос с детальным описанием проблемы."</description>
+        <inputEntry id="UnaryTests_0iexzcy">
+          <text>"Ничего не работает"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hyt0y3">
+          <text>"Другое"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1vqnia3">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0jes528">
+        <description>Отклонено, основание: "Не удалось опознать тип запроса. Оформите запрос ещё раз или обратитесь на горячую линию по телефону +7 (800) 555-35-35."</description>
+        <inputEntry id="UnaryTests_1mwurj8">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1pmxssr">
+          <text>"Другое"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1qddm9w">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0q9tvr0" name="requestMessage" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="secondLineOfSupportAnalysis">
+        <dc:Bounds height="80" width="180" x="390" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0h13y6z" dmnElementRef="InputData_0q9tvr0">
+        <dc:Bounds height="45" width="125" x="198" y="118" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0jr9igk" dmnElementRef="InformationRequirement_0ov36p0">
+        <di:waypoint x="323" y="141" />
+        <di:waypoint x="370" y="140" />
+        <di:waypoint x="390" y="140" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

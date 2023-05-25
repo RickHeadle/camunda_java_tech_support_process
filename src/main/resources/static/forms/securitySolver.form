@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "text": "# Обработка инцидента",
+      "text": "# Обработка запроса в службу безопасности",
       "type": "text",
       "layout": {
         "row": "Row_0b2nphj",
@@ -20,7 +20,7 @@
       "key": "solutionDescription"
     },
     {
-      "label": "Инцидент решен?",
+      "label": "Запрос решен?",
       "type": "checkbox",
       "layout": {
         "row": "Row_1qtkwl5",
@@ -42,7 +42,7 @@
     }
   ],
   "type": "default",
-  "id": "IncidentSolver",
+  "id": "SecuritySolver",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.11.0"
