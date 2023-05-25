@@ -179,18 +179,42 @@
       <bpmn:incoming>Flow_0rxhjgv</bpmn:incoming>
       <bpmn:incoming>Flow_04oxxqz</bpmn:incoming>
       <bpmn:incoming>Flow_04jjgpq</bpmn:incoming>
-      <bpmn:outgoing>Flow_0lbprh0</bpmn:outgoing>
       <bpmn:outgoing>Flow_0cm2l3r</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0lbprh0</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_087z3xp" name="Установить статус обращения &#34;Выполнено&#34;" camunda:expression="${status == &#39;Done&#39;}">
+    <bpmn:serviceTask id="Activity_087z3xp" name="Установить статус обращения &#34;Выполнено&#34;" camunda:asyncBefore="true" camunda:expression="${status == &#34;Done&#34;}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="status">${status}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:properties>
+          <camunda:property name="status" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0lbprh0</bpmn:incoming>
       <bpmn:outgoing>Flow_0gz9khw</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0bdkos2" name="Установить статус обращения &#34;Не удалось выполнить&#34;" camunda:expression="${status == &#39;Failed&#39;}">
+    <bpmn:serviceTask id="Activity_0bdkos2" name="Установить статус обращения &#34;Не удалось выполнить&#34;" camunda:asyncBefore="true" camunda:expression="${status == &#34;Failed&#34;}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="status">${status}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:properties>
+          <camunda:property name="status" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0cm2l3r</bpmn:incoming>
       <bpmn:outgoing>Flow_1lutt4s</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Activity_0mf37n9" name="Установить статус обращения &#34;Отклонено&#34;" camunda:expression="${status == &#39;Denied&#39;}">
+    <bpmn:serviceTask id="Activity_0mf37n9" name="Установить статус обращения &#34;Отклонено&#34;" camunda:asyncBefore="true" camunda:expression="${status == &#34;Denied&#34;}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="status">${status}</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:properties>
+          <camunda:property name="status" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ok0tji</bpmn:incoming>
       <bpmn:outgoing>Flow_0jlna9h</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -225,9 +249,6 @@
     <bpmn:sequenceFlow id="Flow_0jlna9h" sourceRef="Activity_0mf37n9" targetRef="Event_011uvid" />
     <bpmn:sequenceFlow id="Flow_1lutt4s" sourceRef="Activity_0bdkos2" targetRef="Event_011uvid" />
     <bpmn:sequenceFlow id="Flow_0gz9khw" sourceRef="Activity_087z3xp" targetRef="Event_011uvid" />
-    <bpmn:sequenceFlow id="Flow_0lbprh0" name="Да" sourceRef="Gateway_1vzppeu" targetRef="Activity_087z3xp">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isRequestDone}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0cm2l3r" name="Нет" sourceRef="Gateway_1vzppeu" targetRef="Activity_0bdkos2">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!isRequestDone}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -247,6 +268,9 @@
       <bpmn:incoming>Flow_1lutt4s</bpmn:incoming>
       <bpmn:incoming>Flow_0gz9khw</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0lbprh0" name="Да" sourceRef="Gateway_1vzppeu" targetRef="Activity_087z3xp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isRequestDone}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmn:message id="Message_2q757ba" name="requestMessageMail" />
   <bpmn:message id="Message_01r3tb1" name="requestForSecondLine" />
