@@ -119,14 +119,14 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0b6ijb9" messageRef="Message_01r3tb1" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_0a4ydcr" name="Нет" sourceRef="Gateway_18i8bs2" targetRef="Activity_0mf37n9">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{!isRequestForSecondLineOfSupport}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${isRequestForSecondLineOfSupport == "false"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:businessRuleTask id="Activity_0rck4t5" name="Определение отношения запроса ко второй линии" camunda:asyncBefore="true" camunda:resultVariable="resultVar" camunda:decisionRef="secondLineOfSupportAnalysis" camunda:mapDecisionResult="singleResult">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="requestMessage">${requestMessage}</camunda:inputParameter>
           <camunda:outputParameter name="isRequestForSecondLineOfSupport">${resultVar.get('isRequestForSecondLineOfSupport')}</camunda:outputParameter>
-          <camunda:outputParameter name="requestType">${resultVar.requestType.equalsIgnoreCase("true")}</camunda:outputParameter>
+          <camunda:outputParameter name="requestType">${resultVar.get('requestType')}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1npk5k6</bpmn:incoming>
@@ -143,16 +143,16 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_160w61h" sourceRef="Activity_0rck4t5" targetRef="Gateway_18i8bs2" />
     <bpmn:sequenceFlow id="Flow_0q9m932" sourceRef="Gateway_18i8bs2" targetRef="Activity_0o6sk86">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "Авария" &amp;&amp; isRequestForSecondLineOfSupport}}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "Авария" &amp;&amp; isRequestForSecondLineOfSupport == "true"}}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_14kd5as" sourceRef="Gateway_18i8bs2" targetRef="Activity_02lkxtl">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "ЗНИ" &amp;&amp; isRequestForSecondLineOfSupport}}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "ЗНИ" &amp;&amp; isRequestForSecondLineOfSupport == "true"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0xli2o8" sourceRef="Gateway_18i8bs2" targetRef="Activity_0y8io52">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "Инцидент" &amp;&amp; isRequestForSecondLineOfSupport}}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "Инцидент" &amp;&amp; isRequestForSecondLineOfSupport == "true"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_082u0px" sourceRef="Gateway_18i8bs2" targetRef="Activity_1jzkrdg">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "Запрос в службу безопасности" &amp;&amp; isRequestForSecondLineOfSupport}}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${requestType == "Запрос в службу безопасности" &amp;&amp; isRequestForSecondLineOfSupport == "true"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="Gateway_1vzppeu" name="Обращение обработано?">
       <bpmn:incoming>Flow_0pot97u</bpmn:incoming>
