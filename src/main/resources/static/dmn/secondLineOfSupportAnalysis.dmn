@@ -11,7 +11,7 @@
         </inputExpression>
       </input>
       <output id="Output_1" label="requestType" name="requestType" typeRef="string" />
-      <output id="OutputClause_0b4z7m9" label="isRequestForSecondLineOfSupport" name="isRequestForSecondLineOfSupport" typeRef="string" />
+      <output id="OutputClause_0b4z7m9" label="isRequestForSecondLineOfSupport" name="isRequestForSecondLineOfSupport" typeRef="boolean" />
       <rule id="DecisionRule_0y1w9md">
         <inputEntry id="UnaryTests_1f2ik52">
           <text>"Ошибка 418"</text>
@@ -20,7 +20,7 @@
           <text>"Инцидент"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_140ybto">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_16xnpt0">
@@ -31,7 +31,7 @@
           <text>"Инцидент"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_08wbnsc">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_02rfn78">
@@ -42,7 +42,7 @@
           <text>"Авария"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1kcgw28">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0xxkgxr">
@@ -53,7 +53,7 @@
           <text>"Авария"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1rpiy9e">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0diq192">
@@ -64,7 +64,7 @@
           <text>"ЗНИ"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0svpxef">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0ftfvih">
@@ -75,7 +75,7 @@
           <text>"ЗНИ"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1anz54a">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1cachfk">
@@ -86,7 +86,7 @@
           <text>"Запрос в службу безопасности"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0azjgob">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1ulqhpu">
@@ -97,7 +97,7 @@
           <text>"Запрос в службу безопасности"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1gh8g2s">
-          <text>"true"</text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_144glrq">
@@ -109,7 +109,7 @@
           <text>"Другое"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0iby8kw">
-          <text>"false"</text>
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1j9f4zu">
@@ -121,7 +121,7 @@
           <text>"Другое"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1b4gv4t">
-          <text>"false"</text>
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0m4nmyu">
@@ -133,7 +133,7 @@
           <text>"Другое"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1vqnia3">
-          <text>"false"</text>
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0jes528">
@@ -145,7 +145,7 @@
           <text>"Другое"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1qddm9w">
-          <text>"false"</text>
+          <text>false</text>
         </outputEntry>
       </rule>
     </decisionTable>

@@ -1,4 +1,4 @@
-package org.example.camunda.bpm.delegate;
+package org.example.camunda.bpm.delegate.transition;
 
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -6,12 +6,9 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.impl.el.FixedValue;
 import org.springframework.stereotype.Component;
 
-/**
- * Обработка события "Получен запрос с повышенным приоритетом"
- */
 @Slf4j
 @Component
-public class RequestRerouter implements JavaDelegate {
+public class InitiatorToFirstLineMessageDelegate implements JavaDelegate {
 
   private FixedValue messageCorrelation;
 
@@ -24,9 +21,5 @@ public class RequestRerouter implements JavaDelegate {
         .processInstanceBusinessKey(businessKey)
         .setVariable("requestMessage", requestMessage)
         .correlate();
-  }
-
-  public void setMessageCorrelation(FixedValue messageCorrelation) {
-    this.messageCorrelation = messageCorrelation;
   }
 }

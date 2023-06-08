@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="FirstLineStatusDefinition" name="FirstLineStatusDefinition" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="firstLineStatusSolver" name="firstLineStatusSolver">
+    <informationRequirement id="InformationRequirement_0snpz1q">
+      <requiredInput href="#InputData_16edv0z" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_150du6j">
+      <input id="Input_1" label="isRequestDone" camunda:inputVariable="isRequestDone">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="status" typeRef="string" />
+      <rule id="DecisionRule_1xpydc0">
+        <inputEntry id="UnaryTests_15z4v92">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h39281">
+          <text>"Done"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1trdvdh">
+        <inputEntry id="UnaryTests_0t5jbix">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16ucgyk">
+          <text>"Failed"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_16edv0z" name="isRequestDone" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="firstLineStatusSolver">
+        <dc:Bounds height="80" width="180" x="330" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0oiu5h5" dmnElementRef="InputData_16edv0z">
+        <dc:Bounds height="45" width="125" x="158" y="118" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1kucfco" dmnElementRef="InformationRequirement_0snpz1q">
+        <di:waypoint x="283" y="141" />
+        <di:waypoint x="310" y="140" />
+        <di:waypoint x="330" y="140" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

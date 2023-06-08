@@ -69,6 +69,24 @@ public class Request {
   @JoinColumn(name = "EXECUTOR_ID")
   private User executor;
 
+  /**
+   * Пользователь, закрывший запрос. <br>
+   * Поле остаётся пустым до перевода запроса в терминальный статус.
+   */
+  @Nullable
+  @ManyToOne
+  @JoinColumn(name = "SOLVER_ID")
+  private User solver;
+
+  /**
+   * Текстовое описание решения по запросу. <br>
+   * Заполняется пользователем-исполнителем при решении запроса.
+   */
+  @Nullable
+  @Basic
+  @Column(name = "SOLUTION")
+  private String solution;
+
   public Request(@NonNull String requestText, @NonNull RequestPriority priority,
       @NonNull RequestStatus status) {
     this.message = requestText;

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_04swefk" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.11.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="requestFinalStatusSolver" name="requestFinalStatusSolver">
+    <informationRequirement id="InformationRequirement_1mjn74y">
+      <requiredInput href="#InputData_1npla4o" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1fgok0l">
+      <requiredInput href="#InputData_0day8u6" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1c4ljby" hitPolicy="FIRST">
+      <input id="Input_1" label="isRequestForSecondLineOfSupport" camunda:inputVariable="isRequestForSecondLineOfSupport">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0adegiz" label="isRequestDone" camunda:inputVariable="isRequestDone">
+        <inputExpression id="LiteralExpression_1b81zcl" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="status" typeRef="string" />
+      <rule id="DecisionRule_0sn3j7z">
+        <inputEntry id="UnaryTests_15c7xud">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l2grq6">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fccjlr">
+          <text>"Done"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vt3s3z">
+        <inputEntry id="UnaryTests_06v80cb">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1oje85k">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0313k0d">
+          <text>"Falied"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cv6xn6">
+        <inputEntry id="UnaryTests_0jhikdp">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10qzgde">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1b3govv">
+          <text>"Denied"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16c3os8">
+        <inputEntry id="UnaryTests_0vd74ma">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1q9vrpy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1hfjas6">
+          <text>"Denied"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1npla4o" name="isRequestForSecondLineOfSupport" />
+  <inputData id="InputData_0day8u6" name="isRequestDone" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="requestFinalStatusSolver">
+        <dc:Bounds height="80" width="180" x="350" y="70" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1e06n6g" dmnElementRef="InputData_1npla4o">
+        <dc:Bounds height="45" width="125" x="158" y="48" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0rdkr4n" dmnElementRef="InputData_0day8u6">
+        <dc:Bounds height="45" width="125" x="159" y="118" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0al4mai" dmnElementRef="InformationRequirement_1mjn74y">
+        <di:waypoint x="283" y="71" />
+        <di:waypoint x="330" y="97" />
+        <di:waypoint x="350" y="97" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0mre9td" dmnElementRef="InformationRequirement_1fgok0l">
+        <di:waypoint x="284" y="141" />
+        <di:waypoint x="330" y="123" />
+        <di:waypoint x="350" y="123" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

@@ -17,7 +17,7 @@
         "columns": null
       },
       "id": "Field_1woramt",
-      "key": "field_1cc2j6g"
+      "key": "solutionDescription"
     },
     {
       "label": "ЗНИ решен?",
@@ -27,7 +27,7 @@
         "columns": null
       },
       "id": "Field_1x9r3u6",
-      "key": "field_18yua3u"
+      "key": "isRequestDone"
     },
     {
       "action": "submit",

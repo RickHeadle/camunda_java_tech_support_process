@@ -1,32 +1,32 @@
 {
   "components": [
     {
-      "text": "# Обработка аварии",
+      "text": "# Обработка запроса на первой линии",
       "type": "text",
       "layout": {
-        "row": "Row_11d9mph",
+        "row": "Row_15tufdg",
         "columns": null
       },
-      "id": "Field_0swansf"
+      "id": "Field_09vh9vg"
     },
     {
       "label": "Описание решения",
       "type": "textarea",
       "layout": {
-        "row": "Row_1isstwr",
+        "row": "Row_012kna5",
         "columns": null
       },
-      "id": "Field_02bmao2",
+      "id": "Field_18iwgte",
       "key": "solutionDescription"
     },
     {
-      "label": "Авария устранена?",
+      "label": "Запрос решен?",
       "type": "checkbox",
       "layout": {
-        "row": "Row_10nr12k",
+        "row": "Row_00qfjd5",
         "columns": null
       },
-      "id": "Field_0d3oik4",
+      "id": "Field_1qowf8t",
       "key": "isRequestDone"
     },
     {
@@ -34,15 +34,15 @@
       "label": "Подтвердить",
       "type": "button",
       "layout": {
-        "row": "Row_0y87kws",
+        "row": "Row_1ne1p2t",
         "columns": null
       },
-      "id": "Field_1lpq9yc",
-      "key": "field_052tfs1"
+      "id": "Field_0w8xn3n",
+      "key": "field_1gdo841"
     }
   ],
   "type": "default",
-  "id": "CrashSolver",
+  "id": "FirstLineSolver",
   "exporter": {
     "name": "Camunda Modeler",
     "version": "5.11.0"

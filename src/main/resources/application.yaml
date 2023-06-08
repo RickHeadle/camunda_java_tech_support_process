@@ -13,11 +13,12 @@ spring:
 camunda.bpm:
   admin-user:
     id: demo
-    password: demo
+    password: QddWLUTW2@Y9zUb
     firstName: Demo
     lastName: Demo
   filter:
     create: All Tasks
+  auto-deployment-enabled: true
   deployment-resource-pattern:
     - classpath*:**/*.bpmn
     - classpath*:**/*.bpmn20.xml
