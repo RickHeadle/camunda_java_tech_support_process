@@ -1,7 +1,6 @@
 package org.example.camunda.bpm.service;
 
 import java.util.Optional;
-import org.example.camunda.bpm.RequestPriority;
 import org.example.camunda.bpm.RequestStatus;
 import org.example.camunda.bpm.entity.Request;
 import org.example.camunda.bpm.repository.RequestRepository;
@@ -27,7 +26,7 @@ public class RequestServiceImpl implements RequestService {
   @Override
   public Long addNewRequest(String requestText) {
     Request savedRequest = requestRepository.save(
-        new Request(requestText, RequestPriority.NORMAL, RequestStatus.NEW));
+        new Request(requestText, RequestStatus.NEW));
     return savedRequest.getId();
   }
 

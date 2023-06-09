@@ -94,10 +94,10 @@
             <camunda:map>
               <camunda:entry key="status">${status}</camunda:entry>
               <camunda:entry key="solutionDescription">${solutionDescription}</camunda:entry>
+              <camunda:entry key="solver">${taskCompletedBy}</camunda:entry>
             </camunda:map>
           </camunda:inputParameter>
           <camunda:inputParameter name="requestEntityId">${requestEntityId}</camunda:inputParameter>
-          <camunda:inputParameter name="taskCompletedBy">${taskCompletedBy}</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1rhqqbu</bpmn:incoming>
@@ -119,9 +119,10 @@
         <camunda:inputOutput>
           <camunda:outputParameter name="solutionDescription">${solutionDescription}</camunda:outputParameter>
           <camunda:outputParameter name="isRequestDone">${isRequestDone}</camunda:outputParameter>
-          <camunda:outputParameter name="taskCompletedBy" />
         </camunda:inputOutput>
-        <camunda:taskListener delegateExpression="${onCompleteTaskListener}" event="complete" />
+        <camunda:taskListener event="complete">
+          <camunda:script scriptFormat="juel">task.execution.setVariableLocal("taskCompletedBy", task.assignee)</camunda:script>
+        </camunda:taskListener>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0rxe3j2</bpmn:incoming>
       <bpmn:outgoing>Flow_1822g4j</bpmn:outgoing>
@@ -478,7 +479,7 @@
         <di:waypoint x="1140" y="500" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0aczrxu_di" bpmnElement="Participant_0aczrxu" isHorizontal="true">
-        <dc:Bounds x="160" y="710" width="1228" height="390" />
+        <dc:Bounds x="160" y="710" width="1228" height="300" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_013dzhk_di" bpmnElement="Event_0x925bk">

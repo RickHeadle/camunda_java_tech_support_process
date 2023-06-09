@@ -26,12 +26,6 @@ public class RequestUpdater implements JavaDelegate {
 
   @Override
   public void execute(DelegateExecution execution) throws Exception {
-/*    Set<Entry<String, Object>> entries = execution.getVariablesLocal().entrySet();
-    for (Entry<String, Object> entry : entries) {
-      switch (entry.getKey()) {
-        case ""
-      }
-    }*/
     ObjectMapper objectMapper = new ObjectMapper();
     Long entityId = (long) execution.getVariable("requestEntityId");
     Optional<Request> entity = requestService.findById(entityId);
@@ -51,7 +45,11 @@ public class RequestUpdater implements JavaDelegate {
           request.setStatus(RequestStatus.valueOf(value.toUpperCase()));
           break;
         case "executor":
-          request.setExecutor(userService.findById(Long.valueOf(value)));
+          request.setExecutor(userService.findByCamundaId(value));
+          break;
+        case "solver":
+          request.setSolver(userService.findByCamundaId(value));
+          break;
       }
     }
   }

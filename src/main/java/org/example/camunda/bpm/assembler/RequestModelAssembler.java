@@ -27,7 +27,6 @@ public class RequestModelAssembler extends
   private RequestModel assemble(RequestModel model, Request entity) {
     model.setId(entity.getId());
     model.setMessage(entity.getMessage());
-    model.setPriority(entity.getPriority());
     model.setStatus(entity.getStatus());
 
     model.add(getSelfLink(entity.getId()));

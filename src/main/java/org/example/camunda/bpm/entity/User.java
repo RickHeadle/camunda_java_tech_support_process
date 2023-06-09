@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,15 +46,22 @@ public class User {
   private String lastName;
 
   /**
-   * Роль пользователя
+   * Роль пользователя. <br>
+   * Введена в начальной реализации, на текущий момент не используется.
    */
+  @Deprecated
   @NonNull
   @ManyToOne(optional = false)
   @JoinColumn(name = "ROLE_ID", nullable = false)
   private Role role;
 
-  //TODO: перенести в БД
-  @Setter
-  @Transient
-  private boolean isAvailable = true;
+  /**
+   * Идентификатор пользователя в Camunda. <br>
+   * Используется для точного определения пользователя между системами. <br>
+   * Идентификатор строковый, поскольку в Camunda он именно строковый.
+   */
+  @NonNull
+  @Basic(optional = false)
+  @Column(name = "CAMUNDA_ID", nullable = false)
+  private String camunda_id;
 }

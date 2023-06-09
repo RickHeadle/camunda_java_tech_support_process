@@ -25,7 +25,6 @@ public class RequestRepositoryTest {
     Request request = requestService.findById(1L).orElse(new Request());
 
     Assertions.assertEquals(requestMessage, request.getMessage());
-    Assertions.assertEquals(RequestPriority.NORMAL, request.getPriority());
     Assertions.assertEquals(RequestStatus.NEW, request.getStatus());
     Assertions.assertNull(request.getExecutor());
   }

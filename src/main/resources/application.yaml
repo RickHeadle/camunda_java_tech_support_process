@@ -12,6 +12,7 @@ spring:
         bootstrap-mode: default
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
   h2:
     console:
       enabled: true
@@ -22,8 +23,8 @@ spring:
 camunda:
   bpm:
     admin-user:
-      id: demo
-      password: demo
+      id: efimov
+      password: pmw3^MU62y4@
       firstName: Алексей
       lastName: Ефимов
     auto-deployment-enabled: true

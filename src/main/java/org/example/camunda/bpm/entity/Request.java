@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.camunda.bpm.RequestPriority;
 import org.example.camunda.bpm.RequestStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -41,15 +40,6 @@ public class Request {
   @Basic(optional = false)
   @Column(name = "REQUEST_TEXT", nullable = false)
   private String message;
-
-  /**
-   * Приоритет запроса.
-   * @see RequestPriority
-   */
-  @NonNull
-  @Enumerated(EnumType.STRING)
-  @Column(name = "PRIORITY", nullable = false)
-  private RequestPriority priority;
 
   /**
    * Статус запроса.
@@ -87,10 +77,8 @@ public class Request {
   @Column(name = "SOLUTION")
   private String solution;
 
-  public Request(@NonNull String requestText, @NonNull RequestPriority priority,
-      @NonNull RequestStatus status) {
+  public Request(@NonNull String requestText, @NonNull RequestStatus status) {
     this.message = requestText;
-    this.priority = priority;
     this.status = status;
   }
 }

@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
   }
 
 
+  @Deprecated
   @Override
   public User getExecutorWithLeastRequests() {
     return userRepository.getExecutorWithLeastRequests();
@@ -26,5 +27,12 @@ public class UserServiceImpl implements UserService {
   public User findById(@NonNull Long id) {
     return userRepository.findById(id)
         .orElseThrow(() -> new IllegalArgumentException("User not found by id: " + id));
+  }
+
+  @Override
+  public User findByCamundaId(@NonNull String camundaId) {
+    return userRepository.findByCamundaId(camundaId)
+        .orElseThrow(
+            () -> new IllegalArgumentException("User not found by camundaId: " + camundaId));
   }
 }

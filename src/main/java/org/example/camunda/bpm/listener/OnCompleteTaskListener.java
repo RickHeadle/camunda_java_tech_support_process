@@ -13,6 +13,7 @@ public class OnCompleteTaskListener implements TaskListener {
   public void notify(DelegateTask delegateTask) {
     log.debug(String.format("Task %s has been completed by: %s", delegateTask.getName(),
         delegateTask.getAssignee()));
-    delegateTask.setVariableLocal("taskCompletedBy", delegateTask.getAssignee());
+    delegateTask.getExecution()
+        .setVariable("taskCompletedBy", delegateTask.getAssignee());
   }
 }

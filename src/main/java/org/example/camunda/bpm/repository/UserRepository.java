@@ -1,12 +1,17 @@
 package org.example.camunda.bpm.repository;
 
+import java.util.Optional;
 import org.example.camunda.bpm.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+
+  @Query(value = "from User where camunda_id = :camundaId")
+  Optional<User> findByCamundaId(@Param(value = "camundaId") String camundaId);
 
   /**
    * @return Пользователя с ролью "Исполнитель" с минимальным количеством присвоенных запросов в
