@@ -74,6 +74,9 @@ VALUES (6, 'Карен', 'Всеорущая', 4);
 INSERT INTO users (id, first_name, last_name, role_id)
 VALUES (7, 'Фанис', 'Фархутдинов', 4);
 
+INSERT INTO users (id, first_name, last_name, role_id)
+VALUES (8, 'Алексей', 'Ефимов', 4);
+
 --Наполнение таблицы ролей
 INSERT INTO roles(id, code, name, description)
 VALUES (1, 'DEPARTMENT_HEAD', 'Руководитель отдела сопровождения', null);

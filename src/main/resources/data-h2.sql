@@ -32,3 +32,6 @@ VALUES (default, 'Карен', 'Всеорущая', 4);
 
 INSERT INTO users (id, first_name, last_name, role_id)
 VALUES (default, 'Фанис', 'Фархутдинов', 4);
+
+INSERT INTO users (id, first_name, last_name, role_id)
+VALUES (default, 'Алексей', 'Ефимов', 4);

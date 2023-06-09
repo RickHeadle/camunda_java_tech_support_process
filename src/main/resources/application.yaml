@@ -5,25 +5,36 @@ spring:
     username: sa
     password: sa
     driverClassName: org.h2.Driver
+  data:
+    jpa:
+      repositories:
+        enabled: true
+        bootstrap-mode: default
   jpa:
-    defer-datasource-initialization: true
     database-platform: org.hibernate.dialect.H2Dialect
   h2:
-    console.enabled: true
-camunda.bpm:
-  admin-user:
-    id: demo
-    password: QddWLUTW2@Y9zUb
-    firstName: Demo
-    lastName: Demo
-  filter:
-    create: All Tasks
-  auto-deployment-enabled: true
-  deployment-resource-pattern:
-    - classpath*:**/*.bpmn
-    - classpath*:**/*.bpmn20.xml
-    - classpath*:**/*.dmn
-    - classpath*:**/*.dmn11.xml
-    - classpath*:**/*.form
-#  default-serialization-format: application/json
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: true
+camunda:
+  bpm:
+    admin-user:
+      id: demo
+      password: demo
+      firstName: Алексей
+      lastName: Ефимов
+    auto-deployment-enabled: true
+    deployment-resource-pattern:
+      - classpath*:**/*.bpmn
+      - classpath*:**/*.bpmn20.xml
+      - classpath*:**/*.dmn
+      - classpath*:**/*.dmn11.xml
+      - classpath*:**/*.form
+    #  default-serialization-format: application/json
+    filter:
+      create: All Tasks
 server.port: 8080
+
