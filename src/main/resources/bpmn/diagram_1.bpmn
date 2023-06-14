@@ -209,10 +209,9 @@
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="isRequestForSecondLineOfSupport">${isRequestForSecondLineOfSupport}</camunda:inputParameter>
-          <camunda:inputParameter name="isRequestDone">${isRequestDone}</camunda:inputParameter>
           <camunda:outputParameter name="status">${status}</camunda:outputParameter>
         </camunda:inputOutput>
-        <camunda:executionListener expression="" event="start" />
+        <camunda:executionListener delegateExpression="${requestDoneExecutionListener}" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_02te1yp</bpmn:incoming>
       <bpmn:incoming>Flow_1y01o8n</bpmn:incoming>
@@ -321,7 +320,7 @@
             <camunda:map>
               <camunda:entry key="status">${status}</camunda:entry>
               <camunda:entry key="solutionDescription">${solutionDescription}</camunda:entry>
-              <camunda:entry key="solver">${taskCompletedBy}</camunda:entry>
+              <camunda:entry key="solver">${execution.getVariable('taskCompletedBy')}</camunda:entry>
             </camunda:map>
           </camunda:inputParameter>
           <camunda:inputParameter name="requestEntityId">${requestEntityId}</camunda:inputParameter>

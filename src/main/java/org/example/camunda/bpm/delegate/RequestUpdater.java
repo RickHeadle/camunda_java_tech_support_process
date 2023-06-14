@@ -49,9 +49,25 @@ public class RequestUpdater implements JavaDelegate {
           request.setExecutor(userService.findByCamundaId(value));
           break;
         case "solver":
+          //Если запрос отбракован системой - исполнитель не заполняется.
+          if (isNull(value)) {
+            return;
+          }
           request.setSolver(userService.findByCamundaId(value));
           break;
       }
     }
+  }
+
+  /**
+   * Camunda возвращает строку "null" вместо традиционного null-значения
+   * в случае, когда производится попытка получить значение несуществующей переменной. <br>
+   * В данном случае, идёт попытка получения идентификатора пользователя в системе Camunda,
+   * который <b>не будет заполнен</b>, если запрос отбракован.
+   * @param value значение из набора updatableValues
+   * @return true if equals to "null" string
+   */
+  private boolean isNull(String value) {
+    return value.equals("null");
   }
 }
