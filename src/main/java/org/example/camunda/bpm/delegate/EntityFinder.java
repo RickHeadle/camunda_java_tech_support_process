@@ -22,7 +22,8 @@ public class EntityFinder implements JavaDelegate {
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     log.debug("Searching for an entity...");
-    Long entityId = (Long) execution.getVariableLocal("requestEntityId");
+    Long entityId = Long.valueOf(
+        execution.getVariableLocal("requestEntityId").toString());
     Request request = requestService.findById(entityId)
         .orElseThrow(() -> new IllegalArgumentException("Entity not found by id: " + entityId));
     execution.setVariableLocal("requestMessage", request.getMessage());

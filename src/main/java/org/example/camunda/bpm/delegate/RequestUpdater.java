@@ -27,7 +27,8 @@ public class RequestUpdater implements JavaDelegate {
   @Override
   public void execute(DelegateExecution execution) throws Exception {
     ObjectMapper objectMapper = new ObjectMapper();
-    Long entityId = (long) execution.getVariable("requestEntityId");
+    Long entityId = Long.valueOf(
+        execution.getVariable("requestEntityId").toString());
     Optional<Request> entity = requestService.findById(entityId);
     if (!entity.isPresent()) {
       throw new IllegalArgumentException("Entity not found by id: " + entityId);

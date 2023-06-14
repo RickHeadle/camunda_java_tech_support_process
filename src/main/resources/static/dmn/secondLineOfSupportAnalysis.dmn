@@ -83,7 +83,7 @@
           <text>"Предоставление доступа"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1gva9sc">
-          <text>"Запрос в службу безопасности"</text>
+          <text>"Запрос в СБ"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0azjgob">
           <text>true</text>
@@ -94,7 +94,7 @@
           <text>"Утечка данных"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1vngtq3">
-          <text>"Запрос в службу безопасности"</text>
+          <text>"Запрос в СБ"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1gh8g2s">
           <text>true</text>
