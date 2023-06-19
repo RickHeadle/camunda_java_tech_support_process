@@ -45,9 +45,6 @@ public class RequestUpdater implements JavaDelegate {
         case "status":
           request.setStatus(RequestStatus.valueOf(value.toUpperCase()));
           break;
-        case "executor":
-          request.setExecutor(userService.findByCamundaId(value));
-          break;
         case "solver":
           //Если запрос отбракован системой - исполнитель не заполняется.
           if (isNull(value)) {

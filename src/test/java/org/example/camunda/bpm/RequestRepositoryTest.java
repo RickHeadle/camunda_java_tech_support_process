@@ -26,6 +26,5 @@ public class RequestRepositoryTest {
 
     Assertions.assertEquals(requestMessage, request.getMessage());
     Assertions.assertEquals(RequestStatus.NEW, request.getStatus());
-    Assertions.assertNull(request.getExecutor());
   }
 }

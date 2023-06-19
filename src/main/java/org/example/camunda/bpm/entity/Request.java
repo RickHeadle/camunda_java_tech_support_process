@@ -52,14 +52,6 @@ public class Request {
   private RequestStatus status;
 
   /**
-   * Текущий исполнитель запроса. <br> По умолчанию не заполнен для новых запросов.
-   */
-  @Nullable
-  @ManyToOne
-  @JoinColumn(name = "EXECUTOR_ID")
-  private User executor;
-
-  /**
    * Пользователь, закрывший запрос. <br>
    * Поле остаётся пустым до перевода запроса в терминальный статус, и остаётся пустым в случае,
    * если запрос отклонён.
