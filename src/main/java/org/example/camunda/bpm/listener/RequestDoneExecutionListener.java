@@ -16,12 +16,12 @@ public class RequestDoneExecutionListener implements ExecutionListener {
   @Override
   public void notify(DelegateExecution execution) throws Exception {
     Optional<Object> isRequestDone =
-        Optional.ofNullable(execution.getVariableLocal("isRequestDone"));
+        Optional.ofNullable(execution.getVariable("isRequestDone"));
     if (!isRequestDone.isPresent()) {
-      execution.setVariableLocal("isRequestDone", false);
+      execution.setVariable("isRequestDone", false);
     }
     Optional<Object> solutionDescription =
-        Optional.ofNullable(execution.getVariableLocal("solutionDescription"));
+        Optional.ofNullable(execution.getVariable("solutionDescription"));
     if (!solutionDescription.isPresent()) {
       String requestDeniedDescription = "Отклонено.";
       execution.setVariable("solutionDescription", requestDeniedDescription);
