@@ -1,8 +1,10 @@
 package org.example.camunda.bpm.controller;
 
+import java.util.List;
 import java.util.Optional;
 import org.example.camunda.bpm.assembler.RequestModelAssembler;
 import org.example.camunda.bpm.model.RequestModel;
+import org.example.camunda.bpm.projection.RequestProjection;
 import org.example.camunda.bpm.service.RequestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +32,10 @@ public class RequestController {
         .map(modelAssembler::toModel)
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.noContent().build());
+  }
+
+  @GetMapping("/request/proj")
+  public List<RequestProjection> findByProjection() {
+    return requestService.getByProj();
   }
 }

@@ -1,8 +1,11 @@
 package org.example.camunda.bpm.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.example.camunda.bpm.RequestStatus;
 import org.example.camunda.bpm.entity.Request;
+import org.example.camunda.bpm.projection.RequestProjection;
+import org.example.camunda.bpm.repository.RequestProjectionRepository;
 import org.example.camunda.bpm.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -12,10 +15,13 @@ import org.springframework.stereotype.Service;
 public class RequestServiceImpl implements RequestService {
 
   private final RequestRepository requestRepository;
+  private final RequestProjectionRepository requestProjectionRepository;
 
   @Autowired
-  public RequestServiceImpl(RequestRepository requestRepository) {
+  public RequestServiceImpl(RequestRepository requestRepository,
+      RequestProjectionRepository requestProjectionRepository) {
     this.requestRepository = requestRepository;
+    this.requestProjectionRepository = requestProjectionRepository;
   }
 
   @Override
@@ -40,5 +46,10 @@ public class RequestServiceImpl implements RequestService {
     Request modifiedRequest = request.get();
     modifiedRequest.setStatus(status);
     requestRepository.save(modifiedRequest);
+  }
+
+  @Override
+  public List<RequestProjection> getByProj() {
+    return requestProjectionRepository.findAllByStatusIsNotNull();
   }
 }

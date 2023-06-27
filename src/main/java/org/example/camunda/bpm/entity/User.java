@@ -63,5 +63,5 @@ public class User {
   @NonNull
   @Basic(optional = false)
   @Column(name = "CAMUNDA_ID", nullable = false)
-  private String camunda_id;
+  private String camundaId;
 }

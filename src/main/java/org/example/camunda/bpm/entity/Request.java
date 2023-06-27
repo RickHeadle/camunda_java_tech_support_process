@@ -18,10 +18,12 @@ import lombok.Setter;
 import org.example.camunda.bpm.RequestStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Getter
 @Setter
+@Component
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "REQUESTS")

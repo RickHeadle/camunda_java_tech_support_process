@@ -27,5 +27,9 @@ public enum RequestStatus {
   /**
    * Не удалось выполнить. <br> Присваивается в случае, если запрос не удалось обработать.
    */
-  FAILED
+  FAILED;
+
+  public String getName() {
+    return name();
+  }
 }
