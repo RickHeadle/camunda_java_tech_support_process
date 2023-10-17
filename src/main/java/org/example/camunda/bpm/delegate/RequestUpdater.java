@@ -47,10 +47,9 @@ public class RequestUpdater implements JavaDelegate {
           break;
         case "solver":
           //Если запрос отбракован системой - исполнитель не заполняется.
-          if (isNull(value)) {
-            return;
+          if (!isNull(value)) {
+            request.setSolver(userService.findByCamundaId(value));;
           }
-          request.setSolver(userService.findByCamundaId(value));
           break;
       }
     }

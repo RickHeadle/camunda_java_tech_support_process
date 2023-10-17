@@ -4,6 +4,7 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.ExecutionListener;
+import org.example.camunda.bpm.RequestStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,6 +26,7 @@ public class RequestDoneExecutionListener implements ExecutionListener {
     if (!solutionDescription.isPresent()) {
       String requestDeniedDescription = "Отклонено.";
       execution.setVariable("solutionDescription", requestDeniedDescription);
+      execution.setVariable("status", RequestStatus.DENIED);
     }
   }
 }

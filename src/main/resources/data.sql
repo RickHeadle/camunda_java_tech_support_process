@@ -25,6 +25,9 @@ INSERT INTO users (id, first_name, last_name, role_id, camunda_id)
 VALUES (default, 'Виола', 'Тараканова', 3, 'tarakanova');
 
 INSERT INTO users (id, first_name, last_name, role_id, camunda_id)
+VALUES (default, 'Алексей', 'Ефимов', 3, 'efimov');
+
+INSERT INTO users (id, first_name, last_name, role_id, camunda_id)
 VALUES (default, 'Василиса', 'Немудрая', 4, 'nemudraya');
 
 INSERT INTO users (id, first_name, last_name, role_id, camunda_id)
@@ -32,6 +35,3 @@ VALUES (default, 'Карен', 'Всеорущая', 4, 'vseorushchaya');
 
 INSERT INTO users (id, first_name, last_name, role_id, camunda_id)
 VALUES (default, 'Фанис', 'Фархутдинов', 4, 'farhutdinov');
-
-INSERT INTO users (id, first_name, last_name, role_id, camunda_id)
-VALUES (default, 'Алексей', 'Ефимов', 4, 'efimov');

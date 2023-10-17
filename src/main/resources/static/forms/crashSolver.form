@@ -10,6 +10,17 @@
       "id": "Field_0swansf"
     },
     {
+      "label": "Описание проблемы",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0t3to5r",
+        "columns": null
+      },
+      "id": "Field_0krutst",
+      "key": "problemDescription",
+      "disabled": true
+    },
+    {
       "label": "Описание решения",
       "type": "textarea",
       "layout": {

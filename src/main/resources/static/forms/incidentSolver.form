@@ -10,6 +10,17 @@
       "id": "Field_02zo3vq"
     },
     {
+      "label": "Описание проблемы",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1vmno50",
+        "columns": null
+      },
+      "id": "Field_0vxii2x",
+      "key": "problemDescription",
+      "disabled": true
+    },
+    {
       "label": "Описание решения",
       "type": "textarea",
       "layout": {

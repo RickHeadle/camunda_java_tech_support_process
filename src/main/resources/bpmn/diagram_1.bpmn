@@ -117,6 +117,7 @@
     <bpmn:userTask id="Activity_07k1qyj" name="Обработка запроса" camunda:asyncBefore="true" camunda:formRef="FirstLineSolver" camunda:formRefBinding="latest">
       <bpmn:extensionElements>
         <camunda:inputOutput>
+          <camunda:inputParameter name="problemDescription">${requestMessage}</camunda:inputParameter>
           <camunda:outputParameter name="solutionDescription">${solutionDescription}</camunda:outputParameter>
           <camunda:outputParameter name="isRequestDone">${isRequestDone}</camunda:outputParameter>
         </camunda:inputOutput>
@@ -251,6 +252,7 @@
       <bpmn:userTask id="Activity_19scfhj" name="Обработка аварии" camunda:asyncBefore="true" camunda:formRef="CrashSolver" camunda:formRefBinding="latest">
         <bpmn:extensionElements>
           <camunda:inputOutput>
+            <camunda:inputParameter name="problemDescription">${requestMessage}</camunda:inputParameter>
             <camunda:outputParameter name="solutionDescription">${solutionDescription}</camunda:outputParameter>
             <camunda:outputParameter name="isRequestDone">${isRequestDone}</camunda:outputParameter>
           </camunda:inputOutput>
@@ -262,6 +264,7 @@
       <bpmn:userTask id="Activity_1kvcsbu" name="Обработка инцидента" camunda:asyncBefore="true" camunda:formRef="IncidentSolver" camunda:formRefBinding="latest">
         <bpmn:extensionElements>
           <camunda:inputOutput>
+            <camunda:inputParameter name="problemDescription">${requestMessage}</camunda:inputParameter>
             <camunda:outputParameter name="solutionDescription">${solutionDescription}</camunda:outputParameter>
             <camunda:outputParameter name="isRequestDone">${isRequestDone}</camunda:outputParameter>
           </camunda:inputOutput>
@@ -273,6 +276,7 @@
       <bpmn:userTask id="Activity_03av8la" name="Обработка ЗНИ" camunda:asyncBefore="true" camunda:formRef="RequestForChangeSolver" camunda:formRefBinding="latest">
         <bpmn:extensionElements>
           <camunda:inputOutput>
+            <camunda:inputParameter name="problemDescription">${requestMessage}</camunda:inputParameter>
             <camunda:outputParameter name="solutionDescription">${solutionDescription}</camunda:outputParameter>
             <camunda:outputParameter name="isRequestDone">${isRequestDone}</camunda:outputParameter>
           </camunda:inputOutput>
@@ -284,6 +288,7 @@
       <bpmn:userTask id="Activity_0oviwr4" name="Обработка запроса в службу безопасности" camunda:asyncBefore="true" camunda:formRef="SecuritySolver" camunda:formRefBinding="latest">
         <bpmn:extensionElements>
           <camunda:inputOutput>
+            <camunda:inputParameter name="problemDescription">${requestMessage}</camunda:inputParameter>
             <camunda:outputParameter name="solutionDescription">${solutionDescription}</camunda:outputParameter>
             <camunda:outputParameter name="isRequestDone">${isRequestDone}</camunda:outputParameter>
           </camunda:inputOutput>
